@@ -33,8 +33,12 @@ Reusable scaffold
       #mainToolbar {
         width: 100%;
       }
+        .hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
     </style>
-    <core-media-query query="max-width:320px" queryMatches="{{isNarrow}}"></core-media-query>
+    <core-media-query query="max-width:620px" queryMatches="{{isNarrow}}"></core-media-query>
     <core-scaffold id="coreScaffold" responsiveWidth="{{width}}">
       <core-header-panel mode="seamed" id="coreHeaderPanel" navigation flex>
         <core-toolbar id="menuToolbar">
@@ -44,7 +48,7 @@ Reusable scaffold
       </core-header-panel>
       <div tool id="mainToolbar">
         <div horizontal layout>
-          <div hidden?="{{drawerIsOpen}}">
+          <div class="{{ {hidden: drawerIsOpen} | tokenList }}">
             <core-icon-button icon="menu" on-tap="{{onOpenMenu}}"></core-icon-button>
           </div>
           <div flex>
