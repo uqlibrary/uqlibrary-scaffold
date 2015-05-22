@@ -11,14 +11,6 @@
 <link rel="import" href="../uqlibrary-notifications-button/uqlibrary-notifications-button.html">
 <link rel="import" href="../uqlibrary-account-button/uqlibrary-account-button.html">
 
-<!--
-            <uqlibrary-apps-button></uqlibrary-apps-button>
-            <uqlibrary-notifications-button></uqlibrary-notifications-button>
-            <uqlibrary-account-button hidden?="{{isNarrow}}"></uqlibrary-account-button>
-            -->
-
-<!--
-
 Reusable scaffold
 
 ##### Example
@@ -31,7 +23,7 @@ Reusable scaffold
 @homepage https://github.com/uqlibrary/uqlibrary-scaffold
 -->
 
-<polymer-element name="uqlibrary-scaffold" attributes="appTitle appTitleLink appLinks searchPlaceholderText">
+<polymer-element name="uqlibrary-scaffold" attributes="appTitle appMenuFile">
   <template>
     <style>
       #coreScaffold /deep/ #drawerPanel #menuButton {
