@@ -37,6 +37,15 @@ Reusable scaffold
             opacity: 0;
             visibility: hidden;
         }
+        #search {
+            background: white;
+            border-radius: 2px;
+            cursor: text;
+            color: black;
+        }
+      #search:hover {
+          background: #eee;
+      }
     </style>
     <core-media-query query="max-width:620px" queryMatches="{{isNarrow}}"></core-media-query>
     <core-scaffold id="coreScaffold" responsiveWidth="{{width}}">
@@ -48,18 +57,22 @@ Reusable scaffold
       </core-header-panel>
       <div tool id="mainToolbar">
         <div horizontal layout>
-          <div>
+          <div flex?="{{isNarrow}}">
             <core-icon-button icon="menu" class="{{ {hidden: drawerIsOpen} | tokenList }}" on-tap="{{onOpenMenu}}"></core-icon-button>
               {{appTitle}}
           </div>
-            <div flex>
-                <uqlibrary-search-input narrow?="{{isNarrow}}"></uqlibrary-search-input>
+            <div flex id="search" hidden?="{{isNarrow}}">
+                <uqlibrary-search-input id="searchInput"></uqlibrary-search-input>
             </div>
-          <div>
-            <uqlibrary-apps-button></uqlibrary-apps-button>
-            <uqlibrary-notifications-button></uqlibrary-notifications-button>
-            <uqlibrary-account-button hidden?="{{isNarrow}}"></uqlibrary-account-button>
-          </div>
+            <div hidden?="{{!isNarrow}}">
+                <uqlibrary-search-input id="narrowSearch"></uqlibrary-search-input>
+            </div>
+            <div>
+                <uqlibrary-apps-button></uqlibrary-apps-button>
+                <uqlibrary-notifications-button></uqlibrary-notifications-button>
+                <uqlibrary-account-button hidden?="{{isNarrow}}"></uqlibrary-account-button>
+            </div>
+
         </div>
       </div>
       <div><content></content></div>
@@ -75,6 +88,12 @@ Reusable scaffold
         if (! this.isNarrow) {
           this.width = '9999px';
         }
+          this.$.narrowSearch.addEventListener('uqlibrary-search-input-clicked', function(e) {
+              console.log('clicked search while narrow!');
+          });
+          this.$.search.addEventListener('uqlibrary-search-input-clicked', function(e) {
+              console.log('clicked search!');
+          });
       },
 
       onOpenMenu: function () {
