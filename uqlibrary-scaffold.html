@@ -47,6 +47,7 @@ Reusable scaffold
             background-color: rgba(255,255,255,0.16);
             border-radius: 2px;
             cursor: text;
+            white-space: nowrap;
         }
       #search:hover {
           background-color: rgba(255,255,255,0.24);
@@ -58,16 +59,16 @@ Reusable scaffold
         <uqlibrary-menu menuFile="{{appMenuFile}}"></uqlibrary-menu>
       </core-header-panel>
       <div tool id="mainToolbar">
-        <div horizontal layout>
+        <div horizontal layout hidden?="{{searchIsActive}}">
           <div flex?="{{isNarrow}}">
             <core-icon-button icon="menu" class="{{ {hidden: drawerIsOpen} | tokenList }}" on-tap="{{onOpenMenu}}"></core-icon-button>
               {{appTitle}}
           </div>
             <div flex id="search" hidden?="{{isNarrow}}">
-                <uqlibrary-search-input id="searchInput"></uqlibrary-search-input>
+                <uqlibrary-search-input placeholderText="Search" narrow="{{isNarrow}}" id="searchInput"></uqlibrary-search-input>
             </div>
             <div hidden?="{{!isNarrow}}">
-                <uqlibrary-search-input id="narrowSearch"></uqlibrary-search-input>
+                <uqlibrary-search-input placeholderText="Search" narrow="{{isNarrow}}" id="narrowSearch"></uqlibrary-search-input>
             </div>
             <div>
                 <uqlibrary-apps-button></uqlibrary-apps-button>
@@ -84,6 +85,7 @@ Reusable scaffold
     Polymer('uqlibrary-scaffold', {
       width: '256px',
       drawerIsOpen: false,
+        searchIsActive: false,
 
       ready: function () {
         this.addEventListener('uqlibrary-menu-close', this.onCloseMenu);
@@ -93,6 +95,7 @@ Reusable scaffold
         }
           this.$.narrowSearch.addEventListener('uqlibrary-search-input-clicked', function(e) {
               console.log('clicked search while narrow!');
+              this.searchIsActive = true;
           });
           this.$.search.addEventListener('uqlibrary-search-input-clicked', function(e) {
               console.log('clicked search!');
