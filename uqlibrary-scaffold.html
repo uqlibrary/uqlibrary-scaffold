@@ -37,6 +37,7 @@ Reusable scaffold
       }
       #mainToolbar {
         width: 100%;
+          white-space: nowrap;
       }
         .hidden {
             opacity: 0;
@@ -47,7 +48,6 @@ Reusable scaffold
             background-color: rgba(255,255,255,0.16);
             border-radius: 2px;
             cursor: text;
-            white-space: nowrap;
         }
       #search:hover {
           background-color: rgba(255,255,255,0.24);
@@ -59,18 +59,18 @@ Reusable scaffold
         <uqlibrary-menu menuFile="{{appMenuFile}}"></uqlibrary-menu>
       </core-header-panel>
       <div tool id="mainToolbar">
-        <div horizontal layout hidden?="{{searchIsActive}}">
-          <div flex?="{{isNarrow}}">
+        <div horizontal layout>
+          <div flex?="{{isNarrow}}" hidden?="{{searchIsActive}}">
             <core-icon-button icon="menu" class="{{ {hidden: drawerIsOpen} | tokenList }}" on-tap="{{onOpenMenu}}"></core-icon-button>
               {{appTitle}}
           </div>
-            <div flex id="search" hidden?="{{isNarrow}}">
+            <div flex id="search" hidden?="{{isNarrow || searchIsActive}}">
                 <uqlibrary-search-input placeholderText="Search" narrow="{{isNarrow}}" id="searchInput"></uqlibrary-search-input>
             </div>
             <div hidden?="{{!isNarrow}}">
                 <uqlibrary-search-input placeholderText="Search" narrow="{{isNarrow}}" id="narrowSearch"></uqlibrary-search-input>
             </div>
-            <div>
+            <div hidden?="{{searchIsActive}}">
                 <uqlibrary-apps-button></uqlibrary-apps-button>
                 <uqlibrary-notifications-button></uqlibrary-notifications-button>
                 <uqlibrary-account-button hidden?="{{isNarrow}}"></uqlibrary-account-button>
@@ -88,6 +88,7 @@ Reusable scaffold
         searchIsActive: false,
 
       ready: function () {
+          that = this;
         this.addEventListener('uqlibrary-menu-close', this.onCloseMenu);
         this.$.coreScaffold.closeDrawer();
         if (! this.isNarrow) {
@@ -95,10 +96,15 @@ Reusable scaffold
         }
           this.$.narrowSearch.addEventListener('uqlibrary-search-input-clicked', function(e) {
               console.log('clicked search while narrow!');
-              this.searchIsActive = true;
+              that.searchIsActive = true;
+          });
+          this.$.narrowSearch.addEventListener('uqlibrary-search-input-back', function(e) {
+              console.log('clicked back!');
+              that.searchIsActive = false;
           });
           this.$.search.addEventListener('uqlibrary-search-input-clicked', function(e) {
               console.log('clicked search!');
+              that.searchIsActive = false;
           });
       },
 
