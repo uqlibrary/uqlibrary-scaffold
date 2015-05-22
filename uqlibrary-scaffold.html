@@ -6,7 +6,17 @@
 <link rel="import" href="../core-icon-button/core-icon-button.html">
 <link rel="import" href="../core-toolbar/core-toolbar.html">
 <link rel="import" href="../core-menu/core-submenu.html">
-<link rel="import" href="../uqlibrary-menu/uqlibrary-menu.html">
+<link rel="import" href="../uqlibrary-search-input/uqlibrary-search-input.html">
+<link rel="import" href="../uqlibrary-apps-button/uqlibrary-apps-button.html">
+<link rel="import" href="../uqlibrary-notifications-button/uqlibrary-notifications-button.html">
+<link rel="import" href="../uqlibrary-account-button/uqlibrary-account-button.html">
+
+<!--
+            <uqlibrary-apps-button></uqlibrary-apps-button>
+            <uqlibrary-notifications-button></uqlibrary-notifications-button>
+            <uqlibrary-account-button hidden?="{{isNarrow}}"></uqlibrary-account-button>
+            -->
+
 <!--
 
 Reusable scaffold
@@ -21,7 +31,7 @@ Reusable scaffold
 @homepage https://github.com/uqlibrary/uqlibrary-scaffold
 -->
 
-<polymer-element name="uqlibrary-scaffold" attributes="appTitle appTitleLink appLinks searchPlaceholderText appMenuFile">
+<polymer-element name="uqlibrary-scaffold" attributes="appTitle appTitleLink appLinks searchPlaceholderText">
   <template>
     <style>
       #coreScaffold /deep/ #drawerPanel #menuButton {
@@ -41,22 +51,17 @@ Reusable scaffold
       </core-header-panel>
       <div tool id="mainToolbar">
         <div horizontal layout>
-          <div>
-            <core-icon-button icon="menu" on-tap="{{onOpenMenu}}" hidden?="{{drawerIsOpen}}"></core-icon-button>
-            {{appTitle}}
+          <div hidden?="{{drawerIsOpen}}">
+            <core-icon-button icon="menu" on-tap="{{onOpenMenu}}"></core-icon-button>
           </div>
           <div flex>
-            <!--
-            <uqlibrary-search-input></uqlibrary-search-input>
-            -->
+              {{appTitle}}
+            <uqlibrary-search-input narrow?="{{isNarrow}}"></uqlibrary-search-input>
           </div>
           <div>
-            <core-icon-button icon="apps"></core-icon-button>
-            <!--
             <uqlibrary-apps-button></uqlibrary-apps-button>
             <uqlibrary-notifications-button></uqlibrary-notifications-button>
             <uqlibrary-account-button hidden?="{{isNarrow}}"></uqlibrary-account-button>
-            -->
           </div>
         </div>
       </div>
