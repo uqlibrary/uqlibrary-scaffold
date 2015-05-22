@@ -48,13 +48,13 @@ Reusable scaffold
       </core-header-panel>
       <div tool id="mainToolbar">
         <div horizontal layout>
-          <div class="{{ {hidden: drawerIsOpen} | tokenList }}">
-            <core-icon-button icon="menu" on-tap="{{onOpenMenu}}"></core-icon-button>
-          </div>
-          <div flex>
+          <div>
+            <core-icon-button icon="menu" class="{{ {hidden: drawerIsOpen} | tokenList }}" on-tap="{{onOpenMenu}}"></core-icon-button>
               {{appTitle}}
-            <uqlibrary-search-input narrow?="{{isNarrow}}"></uqlibrary-search-input>
           </div>
+            <div flex>
+                <uqlibrary-search-input narrow?="{{isNarrow}}"></uqlibrary-search-input>
+            </div>
           <div>
             <uqlibrary-apps-button></uqlibrary-apps-button>
             <uqlibrary-notifications-button></uqlibrary-notifications-button>
