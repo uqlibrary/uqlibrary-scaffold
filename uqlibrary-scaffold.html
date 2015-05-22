@@ -6,7 +6,7 @@
 <link rel="import" href="../core-icon-button/core-icon-button.html">
 <link rel="import" href="../core-toolbar/core-toolbar.html">
 <link rel="import" href="../core-menu/core-submenu.html">
-
+<link rel="import" href="../uqlibrary-menu/uqlibrary-menu.html">
 <!--
 
 Reusable scaffold
@@ -21,48 +21,75 @@ Reusable scaffold
 @homepage https://github.com/uqlibrary/uqlibrary-scaffold
 -->
 
-<polymer-element name="uqlibrary-scaffold" attributes="appTitle appTitleLink appLinks searchPlaceholderText">
-    <template>
-        <style>
-            :host {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                box-sizing: border-box;
-            }
-            #core_scaffold {
-                position: absolute;
-                top: 0px;
-                right: 0px;
-                bottom: 0px;
-                left: 0px;
-                width: 100%;
-                height: 100%;
-            }
-            #core_header_panel {
-                background-color: rgb(255, 255, 255);
-            }
-            #core_toolbar {
-                color: rgb(255, 255, 255);
-                background-color: rgb(79, 125, 201);
-            }
-            #core_menu {
-                font-size: 16px;
-            }
-        </style>
-        <core-scaffold id="core_scaffold">
-            <core-header-panel mode="seamed" id="core_header_panel" navigation flex>
-                <core-toolbar id="core_toolbar"></core-toolbar>
-                <core-menu selected="Item1" valueattr="label" selectedindex="0" id="core_menu" theme="core-light-theme">
-                    <core-item id="core_item" icon="settings" label="Item1" horizontal center layout active></core-item>
-                    <core-item id="core_item1" icon="settings" label="Item2" horizontal center layout></core-item>
-                </core-menu>
-            </core-header-panel>
-            <div id="div" tool>My Library</div>
-        </core-scaffold>
-    </template>
-    <script>
-        Polymer('uqlibrary-scaffold', {
-        });
-    </script>
+<polymer-element name="uqlibrary-scaffold" attributes="appTitle appTitleLink appLinks searchPlaceholderText appMenuFile">
+  <template>
+    <style>
+      #coreScaffold /deep/ #drawerPanel #menuButton {
+        display: none;
+      }
+      #mainToolbar {
+        width: 100%;
+      }
+    </style>
+    <core-media-query query="max-width:320px" queryMatches="{{isNarrow}}"></core-media-query>
+    <core-scaffold id="coreScaffold" responsiveWidth="{{width}}">
+      <core-header-panel mode="seamed" id="coreHeaderPanel" navigation flex>
+        <core-toolbar id="menuToolbar">
+          <core-icon-button icon="menu" on-tap="{{onCloseMenu}}"></core-icon-button>
+        </core-toolbar>
+        <uqlibrary-menu menuFile="{{appMenuFile}}"></uqlibrary-menu>
+      </core-header-panel>
+      <div tool id="mainToolbar">
+        <div horizontal layout>
+          <div>
+            <core-icon-button icon="menu" on-tap="{{onOpenMenu}}" hidden?="{{drawerIsOpen}}"></core-icon-button>
+            {{appTitle}}
+          </div>
+          <div flex>
+            <!--
+            <uqlibrary-search-input></uqlibrary-search-input>
+            -->
+          </div>
+          <div>
+            <core-icon-button icon="apps"></core-icon-button>
+            <!--
+            <uqlibrary-apps-button></uqlibrary-apps-button>
+            <uqlibrary-notifications-button></uqlibrary-notifications-button>
+            <uqlibrary-account-button hidden?="{{isNarrow}}"></uqlibrary-account-button>
+            -->
+          </div>
+        </div>
+      </div>
+      <div><content></content></div>
+    </core-scaffold>
+  </template>
+  <script>
+    Polymer('uqlibrary-scaffold', {
+      width: '256px',
+      drawerIsOpen: false,
+
+      ready: function () {
+        this.$.coreScaffold.closeDrawer();
+        if (! this.isNarrow) {
+          this.width = '9999px';
+        }
+      },
+
+      onOpenMenu: function () {
+        if (! this.isNarrow) {
+          this.width = '256px';
+        }
+        this.$.coreScaffold.openDrawer();
+        this.drawerIsOpen = true;
+      },
+
+      onCloseMenu: function () {
+        this.$.coreScaffold.closeDrawer();
+        if (! this.isNarrow) {
+          this.width = '9999px';
+        }
+        this.drawerIsOpen = false;
+      }
+    });
+  </script>
 </polymer-element>
