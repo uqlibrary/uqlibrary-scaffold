@@ -53,7 +53,7 @@ Reusable scaffold
           background-color: rgba(255,255,255,0.24);
       }
     </style>
-    <core-media-query query="max-width:620px" queryMatches="{{isNarrow}}"></core-media-query>
+    <core-media-query query="max-width:768px" queryMatches="{{isNarrow}}"></core-media-query>
     <core-scaffold id="coreScaffold" responsiveWidth="{{width}}">
       <core-header-panel mode="seamed" id="coreHeaderPanel" navigation flex>
         <uqlibrary-menu menuFile="{{appMenuFile}}"></uqlibrary-menu>
@@ -75,7 +75,6 @@ Reusable scaffold
                 <uqlibrary-notifications-button></uqlibrary-notifications-button>
                 <uqlibrary-account-button hidden?="{{isNarrow}}"></uqlibrary-account-button>
             </div>
-
         </div>
       </div>
       <div><content></content></div>
@@ -104,7 +103,6 @@ Reusable scaffold
           });
           this.$.search.addEventListener('uqlibrary-search-input-clicked', function(e) {
               console.log('clicked search!');
-              that.searchIsActive = false;
           });
       },
 
