@@ -43,13 +43,13 @@ Reusable scaffold
             opacity: 0;
             visibility: hidden;
         }
-        #search {
+        .openSearch {
             margin: 0 24px;
             background-color: rgba(255,255,255,0.16);
             border-radius: 2px;
             cursor: text;
         }
-      #search:hover {
+      .openSearch:hover {
           background-color: rgba(255,255,255,0.24);
       }
     </style>
@@ -64,10 +64,7 @@ Reusable scaffold
             <core-icon-button icon="menu" class="{{ {hidden: drawerIsOpen} | tokenList }}" on-tap="{{onOpenMenu}}"></core-icon-button>
               {{appTitle}}
           </div>
-            <div flex id="search" hidden?="{{isNarrow || searchIsActive}}">
-                <uqlibrary-search-input placeholderText="Search" narrow="{{isNarrow}}" id="searchInput"></uqlibrary-search-input>
-            </div>
-            <div hidden?="{{!isNarrow}}">
+            <div flex?="{{!isNarrow}}" class="{{ {openSearch: !isNarrow} | tokenList }}">
                 <uqlibrary-search-input placeholderText="Search" narrow="{{isNarrow}}" id="narrowSearch"></uqlibrary-search-input>
             </div>
             <div hidden?="{{searchIsActive}}">
@@ -94,15 +91,12 @@ Reusable scaffold
           this.width = '9999px';
         }
           this.$.narrowSearch.addEventListener('uqlibrary-search-input-clicked', function(e) {
-              console.log('clicked search while narrow!');
+              console.log('clicked search!');
               that.searchIsActive = true;
           });
           this.$.narrowSearch.addEventListener('uqlibrary-search-input-back', function(e) {
               console.log('clicked back!');
               that.searchIsActive = false;
-          });
-          this.$.search.addEventListener('uqlibrary-search-input-clicked', function(e) {
-              console.log('clicked search!');
           });
       },
 
