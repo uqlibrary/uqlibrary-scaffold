@@ -43,6 +43,10 @@ Reusable scaffold
             opacity: 0;
             visibility: hidden;
         }
+        .visible {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
         .openSearch {
             margin: 0 24px;
             background-color: rgba(255,255,255,0.16);
@@ -52,6 +56,9 @@ Reusable scaffold
       .openSearch:hover {
           background-color: rgba(255,255,255,0.24);
       }
+        .turnWhite {
+            background-color: #fff;
+        }
     </style>
     <core-media-query query="max-width:768px" queryMatches="{{isNarrow}}"></core-media-query>
     <core-scaffold id="coreScaffold" responsiveWidth="{{width}}">
@@ -60,14 +67,14 @@ Reusable scaffold
       </core-header-panel>
       <div tool id="mainToolbar">
         <div horizontal layout>
-          <div flex?="{{isNarrow}}" hidden?="{{searchIsActive}}">
-            <core-icon-button icon="menu" class="{{ {hidden: drawerIsOpen} | tokenList }}" on-tap="{{onOpenMenu}}"></core-icon-button>
+          <div flex?="{{isNarrow}}" id="scaffoldLeft">
+            <core-icon-button icon="menu" class="{{ {hidden: drawerIsOpen, visible: isNarrow} | tokenList }}" on-tap="{{onOpenMenu}}"></core-icon-button>
               {{appTitle}}
           </div>
-            <div flex?="{{!isNarrow}}" class="{{ {openSearch: !isNarrow} | tokenList }}">
-                <uqlibrary-search-input placeholderText="Search" narrow="{{isNarrow}}" id="narrowSearch"></uqlibrary-search-input>
+            <div flex?="{{!isNarrow || searchIsActive}}" class="{{ {openSearch: !isNarrow} | tokenList }}">
+                <uqlibrary-search-input placeholderText="Search" narrow="{{isNarrow}}" id="search"></uqlibrary-search-input>
             </div>
-            <div hidden?="{{searchIsActive}}">
+            <div hidden?="{{searchIsActive}}" id="scaffoldRight">
                 <uqlibrary-apps-button></uqlibrary-apps-button>
                 <uqlibrary-notifications-button></uqlibrary-notifications-button>
                 <uqlibrary-account-button hidden?="{{isNarrow}}"></uqlibrary-account-button>
@@ -90,12 +97,21 @@ Reusable scaffold
         if (! this.isNarrow) {
           this.width = '9999px';
         }
-          this.$.narrowSearch.addEventListener('uqlibrary-search-input-clicked', function(e) {
+          this.$.search.addEventListener('uqlibrary-search-input-button-clicked', function(e) {
               console.log('clicked search!');
+//              that.searchIsActive = true;
+          });
+          this.$.search.addEventListener('uqlibrary-search-input-button-clicked-narrow', function(e) {
+              console.log('clicked search while narrow!');
+              that.$.scaffoldLeft.setAttribute('hidden', 'true');
+              that.$.scaffoldRight.setAttribute('hidden', 'true');
               that.searchIsActive = true;
           });
-          this.$.narrowSearch.addEventListener('uqlibrary-search-input-back', function(e) {
-              console.log('clicked back!');
+
+          this.$.search.addEventListener('uqlibrary-search-input-back', function(e) {
+              console.log('clicked back while narrow!');
+              that.$.scaffoldLeft.removeAttribute('hidden');
+              that.$.scaffoldRight.removeAttribute('hidden');
               that.searchIsActive = false;
           });
       },
