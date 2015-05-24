@@ -59,6 +59,9 @@ Reusable scaffold
         .turnWhite {
             background-color: #fff;
         }
+        #searchContainer {
+            overflow: hidden;
+        }
     </style>
     <core-media-query query="max-width:768px" queryMatches="{{isNarrow}}"></core-media-query>
     <core-scaffold id="coreScaffold" responsiveWidth="{{width}}">
@@ -71,7 +74,7 @@ Reusable scaffold
             <core-icon-button icon="menu" class="{{ {hidden: drawerIsOpen, visible: isNarrow} | tokenList }}" on-tap="{{onOpenMenu}}"></core-icon-button>
               {{appTitle}}
           </div>
-            <div flex?="{{!isNarrow || searchIsActive}}" class="{{ {openSearch: !isNarrow} | tokenList }}">
+            <div flex?="{{!isNarrow || searchIsActive}}" id="searchContainer" class="{{ {openSearch: !isNarrow} | tokenList }}">
                 <uqlibrary-search-input placeholderText="Search" narrow="{{isNarrow}}" id="search"></uqlibrary-search-input>
             </div>
             <div hidden?="{{searchIsActive}}" id="scaffoldRight">
