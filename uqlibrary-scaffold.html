@@ -39,16 +39,16 @@ Reusable scaffold
         <div horizontal layout>
           <div flex?="{{isNarrow}}" id="scaffoldLeft">
             <core-icon-button icon="menu" class="{{ {hidden: drawerIsOpen, visible: isNarrow} | tokenList }}" on-tap="{{onOpenMenu}}"></core-icon-button>
-              {{appTitle}}
+            {{appTitle}}
           </div>
-            <div flex?="{{!isNarrow || searchIsActive}}" id="searchContainer" class="{{ {openSearch: !isNarrow} | tokenList }}">
-                <uqlibrary-search-input placeholderText="Search" narrow="{{isNarrow}}" id="search"></uqlibrary-search-input>
-            </div>
-            <div hidden?="{{searchIsActive}}" id="scaffoldRight">
-                <uqlibrary-apps-button></uqlibrary-apps-button>
-                <uqlibrary-notifications-button allowDesktopNotifications></uqlibrary-notifications-button>
-                <uqlibrary-account-button hidden?="{{isNarrow}}"></uqlibrary-account-button>
-            </div>
+          <div flex?="{{!isNarrow || searchIsActive}}" id="searchContainer" class="{{ {openSearch: !isNarrow} | tokenList }}">
+            <uqlibrary-search-input placeholderText="Search" narrow="{{isNarrow}}" id="search"></uqlibrary-search-input>
+          </div>
+          <div hidden?="{{searchIsActive}}" id="scaffoldRight">
+            <uqlibrary-apps-button></uqlibrary-apps-button>
+            <uqlibrary-notifications-button allowDesktopNotifications></uqlibrary-notifications-button>
+            <uqlibrary-account-button hidden?="{{isNarrow}}"></uqlibrary-account-button>
+          </div>
         </div>
       </div>
       <div><content></content></div>
@@ -61,28 +61,28 @@ Reusable scaffold
       searchIsActive: false,
 
       ready: function () {
-          that = this;
+        that = this;
         this.addEventListener('uqlibrary-menu-close', this.onCloseMenu);
         this.$.coreScaffold.closeDrawer();
         if (! this.isNarrow) {
           this.width = '9999px';
         }
-          this.$.search.addEventListener('uqlibrary-search-input-button-clicked', function(e) {
-              console.log('clicked search!');
-          });
-          this.$.search.addEventListener('uqlibrary-search-input-button-clicked-narrow', function(e) {
-              console.log('clicked search while narrow!');
-              that.$.scaffoldLeft.setAttribute('hidden', 'true');
-              that.$.scaffoldRight.setAttribute('hidden', 'true');
-              that.searchIsActive = true;
-          });
+        this.$.search.addEventListener('uqlibrary-search-input-button-clicked', function(e) {
+          console.log('clicked search!');
+        });
+        this.$.search.addEventListener('uqlibrary-search-input-button-clicked-narrow', function(e) {
+          console.log('clicked search while narrow!');
+          that.$.scaffoldLeft.setAttribute('hidden', 'true');
+          that.$.scaffoldRight.setAttribute('hidden', 'true');
+          that.searchIsActive = true;
+        });
 
-          this.$.search.addEventListener('uqlibrary-search-input-back', function(e) {
-              console.log('clicked back while narrow!');
-              that.$.scaffoldLeft.removeAttribute('hidden');
-              that.$.scaffoldRight.removeAttribute('hidden');
-              that.searchIsActive = false;
-          });
+        this.$.search.addEventListener('uqlibrary-search-input-back', function(e) {
+          console.log('clicked back while narrow!');
+          that.$.scaffoldLeft.removeAttribute('hidden');
+          that.$.scaffoldRight.removeAttribute('hidden');
+          that.searchIsActive = false;
+        });
       },
 
       onOpenMenu: function () {
