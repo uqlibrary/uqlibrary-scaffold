@@ -76,7 +76,7 @@ Reusable scaffold
             </div>
             <div hidden?="{{searchIsActive}}" id="scaffoldRight">
                 <uqlibrary-apps-button></uqlibrary-apps-button>
-                <uqlibrary-notifications-button></uqlibrary-notifications-button>
+                <uqlibrary-notifications-button allowDesktopNotifications></uqlibrary-notifications-button>
                 <uqlibrary-account-button hidden?="{{isNarrow}}"></uqlibrary-account-button>
             </div>
         </div>
@@ -88,7 +88,7 @@ Reusable scaffold
     Polymer('uqlibrary-scaffold', {
       width: '256px',
       drawerIsOpen: false,
-        searchIsActive: false,
+      searchIsActive: false,
 
       ready: function () {
           that = this;
