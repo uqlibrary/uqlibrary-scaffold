@@ -13,6 +13,10 @@
     "web-component",
     "polymer"
   ],
+  "ignore": [
+    "/.*",
+    "/tests/"
+  ],
   "main": "uqlibrary-scaffold.html",
   "private": false,
   "repository": {
