@@ -9,6 +9,7 @@
 <link rel="import" href="../uqlibrary-menu/uqlibrary-menu.html">
 <link rel="import" href="../uqlibrary-search-input/uqlibrary-search-input.html">
 <link rel="import" href="../uqlibrary-apps-button/uqlibrary-apps-button.html">
+<link rel="import" href="../uqlibrary-chat-button/uqlibrary-chat-button.html">
 <link rel="import" href="../uqlibrary-notifications-button/uqlibrary-notifications-button.html">
 <link rel="import" href="../uqlibrary-account-button/uqlibrary-account-button.html">
 
@@ -45,6 +46,9 @@ Reusable scaffold
             <uqlibrary-search-input placeholderText="Search" narrow="{{isNarrow}}" id="search"></uqlibrary-search-input>
           </div>
           <div id="scaffoldRight" horizontal layout>
+            <div flex hidden?="{{searchIsActive}}">
+              <uqlibrary-chat-button></uqlibrary-chat-button>
+            </div>
             <div flex hidden?="{{searchIsActive}}">
               <uqlibrary-apps-button></uqlibrary-apps-button>
             </div>
