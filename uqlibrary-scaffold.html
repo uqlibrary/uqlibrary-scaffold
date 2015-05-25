@@ -42,22 +42,32 @@ Reusable scaffold
             <core-icon-button icon="menu" class="{{ {hidden: drawerIsOpen, visible: isNarrow} | tokenList }}" on-tap="{{onOpenMenu}}"></core-icon-button>
             {{appTitle}}
           </div>
+
           <div flex?="{{!isNarrow || searchIsActive}}" id="searchContainer" class="{{ {openSearch: !isNarrow} | tokenList }}">
-            <uqlibrary-search-input placeholderText="Search" narrow="{{isNarrow}}" id="search"></uqlibrary-search-input>
+            <uqlibrary-search-input
+              placeholderText="Search"
+              narrow="{{isNarrow}}"
+              id="search"></uqlibrary-search-input>
           </div>
+
           <div id="scaffoldRight" horizontal layout>
-            <div flex hidden?="{{searchIsActive}}">
-              <uqlibrary-chat-button></uqlibrary-chat-button>
-            </div>
-            <div flex hidden?="{{searchIsActive}}">
-              <uqlibrary-apps-button></uqlibrary-apps-button>
-            </div>
-            <div flex hidden?="{{searchIsActive}}">
-              <uqlibrary-notifications-button allowDesktopNotifications></uqlibrary-notifications-button>
-            </div>
-            <div flex hidden?="{{searchIsActive || isNarrow}}">
-              <uqlibrary-account-button></uqlibrary-account-button>
-            </div>
+
+              <uqlibrary-chat-button
+                flex
+                hidden?="{{searchIsActive}}"></uqlibrary-chat-button>
+
+              <uqlibrary-apps-button
+                flex
+                hidden?="{{searchIsActive}}"></uqlibrary-apps-button>
+
+              <uqlibrary-notifications-button
+                allowDesktopNotifications
+                flex hidden?="{{searchIsActive}}"></uqlibrary-notifications-button>
+
+              <uqlibrary-account-button
+                flex
+                hidden?="{{searchIsActive || isNarrow}}"></uqlibrary-account-button>
+
           </div>
         </div>
       </div>

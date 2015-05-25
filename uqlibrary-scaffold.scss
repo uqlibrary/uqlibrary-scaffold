@@ -1,10 +1,12 @@
 @import "../uqlibrary-elements/resources/theme/variables";
 
-#coreScaffold /deep/ #drawerPanel #menuButton {
-  display: none;
-}
-#coreScaffold /deep/ #drawerPanel core-toolbar {
-  background-color: $dark-primary;
+#coreScaffold /deep/ #drawerPanel {
+  #menuButton {
+    display: none;
+  }
+  core-toolbar {
+    background-color: $dark-primary;
+  }
 }
 #mainToolbar {
   width: 100%;
