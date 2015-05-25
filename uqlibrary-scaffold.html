@@ -6,12 +6,13 @@
 <link rel="import" href="../core-icon-button/core-icon-button.html">
 <link rel="import" href="../core-toolbar/core-toolbar.html">
 <link rel="import" href="../core-menu/core-submenu.html">
-<link rel="import" href="../uqlibrary-menu/uqlibrary-menu.html">
-<link rel="import" href="../uqlibrary-search-input/uqlibrary-search-input.html">
+<link rel="import" href="../uqlibrary-account-button/uqlibrary-account-button.html">
 <link rel="import" href="../uqlibrary-apps-button/uqlibrary-apps-button.html">
 <link rel="import" href="../uqlibrary-chat-button/uqlibrary-chat-button.html">
+<link rel="import" href="../uqlibrary-menu/uqlibrary-menu.html">
 <link rel="import" href="../uqlibrary-notifications-button/uqlibrary-notifications-button.html">
-<link rel="import" href="../uqlibrary-account-button/uqlibrary-account-button.html">
+<link rel="import" href="../uqlibrary-search-input/uqlibrary-search-input.html">
+
 
 <!--
 Reusable scaffold
@@ -54,7 +55,7 @@ Reusable scaffold
 
               <uqlibrary-chat-button
                 flex
-                hidden?="{{searchIsActive}}"></uqlibrary-chat-button>
+                hidden?="{{isNarrow}}"></uqlibrary-chat-button>
 
               <uqlibrary-notifications-button
                 allowDesktopNotifications
