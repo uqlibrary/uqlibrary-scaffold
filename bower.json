@@ -6,13 +6,12 @@
     "The University of Queensland Library"
   ],
   "keywords": [
-    "web-components",
-    "web-component",
-    "polymer",
-    "paper",
     "uq",
     "uqlibrary",
-    "library"
+    "library",
+    "web-components",
+    "web-component",
+    "polymer"
   ],
   "main": "uqlibrary-scaffold.html",
   "private": true,
