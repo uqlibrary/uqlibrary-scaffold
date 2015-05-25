@@ -44,10 +44,16 @@ Reusable scaffold
           <div flex?="{{!isNarrow || searchIsActive}}" id="searchContainer" class="{{ {openSearch: !isNarrow} | tokenList }}">
             <uqlibrary-search-input placeholderText="Search" narrow="{{isNarrow}}" id="search"></uqlibrary-search-input>
           </div>
-          <div hidden?="{{searchIsActive}}" id="scaffoldRight">
-            <uqlibrary-apps-button></uqlibrary-apps-button>
-            <uqlibrary-notifications-button allowDesktopNotifications></uqlibrary-notifications-button>
-            <uqlibrary-account-button hidden?="{{isNarrow}}"></uqlibrary-account-button>
+          <div id="scaffoldRight" horizontal layout>
+            <div flex hidden?="{{searchIsActive}}">
+              <uqlibrary-apps-button></uqlibrary-apps-button>
+            </div>
+            <div flex hidden?="{{searchIsActive}}">
+              <uqlibrary-notifications-button allowDesktopNotifications></uqlibrary-notifications-button>
+            </div>
+            <div flex hidden?="{{searchIsActive || isNarrow}}">
+              <uqlibrary-account-button></uqlibrary-account-button>
+            </div>
           </div>
         </div>
       </div>
