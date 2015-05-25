@@ -35,7 +35,7 @@ Reusable scaffold
       <core-header-panel mode="seamed" id="coreHeaderPanel" navigation flex>
         <uqlibrary-menu menuFile="{{appMenuFile}}"></uqlibrary-menu>
       </core-header-panel>
-      <div tool id="mainToolbar">
+      <div tool id="mainToolbar" class="{{ {turnWhite: searchIsActive} | tokenList }}">
         <div horizontal layout>
           <div flex?="{{isNarrow}}" id="scaffoldLeft">
             <core-icon-button icon="menu" class="{{ {hidden: drawerIsOpen, visible: isNarrow} | tokenList }}" on-tap="{{onOpenMenu}}"></core-icon-button>
@@ -75,6 +75,7 @@ Reusable scaffold
           that.$.scaffoldLeft.setAttribute('hidden', 'true');
           that.$.scaffoldRight.setAttribute('hidden', 'true');
           that.searchIsActive = true;
+          document.querySelector('#coreScaffold /deep/ #drawerPanel core-toolbar').style.backgroundColor = "#fff";
         });
 
         this.$.search.addEventListener('uqlibrary-search-input-back', function(e) {
@@ -82,6 +83,7 @@ Reusable scaffold
           that.$.scaffoldLeft.removeAttribute('hidden');
           that.$.scaffoldRight.removeAttribute('hidden');
           that.searchIsActive = false;
+          document.querySelector('#coreScaffold /deep/ #drawerPanel core-toolbar').style.backgroundColor = "#4a075f";
         });
       },
 

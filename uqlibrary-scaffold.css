@@ -26,7 +26,8 @@
   background-color: rgba(255, 255, 255, 0.24); }
 
 .turnWhite {
-  background-color: #fff; }
+  background-color: #fff;
+  border-radius: 2px; }
 
 #searchContainer {
   overflow: hidden; }
