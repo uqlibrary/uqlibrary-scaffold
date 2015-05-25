@@ -53,21 +53,21 @@ Reusable scaffold
 
           <div id="scaffoldRight" horizontal layout>
 
-              <uqlibrary-chat-button
-                flex
-                hidden?="{{isNarrow}}"></uqlibrary-chat-button>
+            <uqlibrary-chat-button
+              flex
+              hidden?="{{isNarrow}}"></uqlibrary-chat-button>
 
-              <uqlibrary-notifications-button
-                allowDesktopNotifications
-                flex hidden?="{{searchIsActive}}"></uqlibrary-notifications-button>
+            <uqlibrary-apps-button
+              flex
+              hidden?="{{searchIsActive}}"></uqlibrary-apps-button>
 
-              <uqlibrary-apps-button
-                flex
-                hidden?="{{searchIsActive}}"></uqlibrary-apps-button>
+            <uqlibrary-notifications-button
+              allowDesktopNotifications
+              flex hidden?="{{searchIsActive}}"></uqlibrary-notifications-button>
 
-              <uqlibrary-account-button
-                flex
-                hidden?="{{searchIsActive || isNarrow}}"></uqlibrary-account-button>
+            <uqlibrary-account-button
+              flex
+              hidden?="{{searchIsActive || isNarrow}}"></uqlibrary-account-button>
 
           </div>
         </div>
