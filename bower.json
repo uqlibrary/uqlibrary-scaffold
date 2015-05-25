@@ -25,6 +25,7 @@
     "uqlibrary-account-button": "uqlibrary/uqlibrary-account-button#^1.0",
     "uqlibrary-apps-button": "uqlibrary/uqlibrary-apps-button#^1.0",
     "uqlibrary-chat-button": "uqlibrary/uqlibrary-chat-button#^1.0",
+    "uqlibrary-elements": "uqlibrary/uqlibrary-elements#<branch>",
     "uqlibrary-menu": "uqlibrary/uqlibrary-menu#^1.0",
     "uqlibrary-notifications-button": "uqlibrary/uqlibrary-notifications-button#^1.0",
     "uqlibrary-search-input": "uqlibrary/uqlibrary-search-input#^1.0",
