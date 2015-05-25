@@ -1,6 +1,6 @@
 {
   "name": "uqlibrary-scaffold",
-  "version": "1.0",
+  "version": "0.5",
   "description": "A starter boilerplate upon which any UQ app can be built using Web Components",
   "authors": [
     "The University of Queensland Library"
@@ -14,7 +14,7 @@
     "polymer"
   ],
   "main": "uqlibrary-scaffold.html",
-  "private": true,
+  "private": false,
   "repository": {
     "type": "git",
     "url": "git://github.com/uqlibrary/uqlibrary-scaffold"
@@ -22,13 +22,13 @@
   "license": "MIT",
   "homepage": "https://github.com/uqlibrary/uqlibrary-scaffold",
   "dependencies": {
-    "uqlibrary-account-button": "uqlibrary/uqlibrary-account-button#^1.0",
-    "uqlibrary-apps-button": "uqlibrary/uqlibrary-apps-button#^1.0",
-    "uqlibrary-chat-button": "uqlibrary/uqlibrary-chat-button#^1.0",
+    "uqlibrary-account-button": "uqlibrary/uqlibrary-account-button",
+    "uqlibrary-apps-button": "uqlibrary/uqlibrary-apps-button",
+    "uqlibrary-chat-button": "uqlibrary/uqlibrary-chat-button",
     "uqlibrary-elements": "uqlibrary/uqlibrary-elements#<branch>",
-    "uqlibrary-menu": "uqlibrary/uqlibrary-menu#^1.0",
-    "uqlibrary-notifications-button": "uqlibrary/uqlibrary-notifications-button#^1.0",
-    "uqlibrary-search-input": "uqlibrary/uqlibrary-search-input#^1.0",
+    "uqlibrary-menu": "uqlibrary/uqlibrary-menu#<branch>",
+    "uqlibrary-notifications-button": "uqlibrary/uqlibrary-notifications-button",
+    "uqlibrary-search-input": "uqlibrary/uqlibrary-search-input",
     "polymer": "Polymer/polymer#0.5.4",
     "core-elements": "Polymer/core-elements#0.5.4",
     "paper-elements": "Polymer/paper-elements#0.5.4",
