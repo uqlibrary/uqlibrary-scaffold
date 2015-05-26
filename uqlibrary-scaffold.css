@@ -9,13 +9,13 @@
   visibility: visible !important; }
 #coreScaffold /deep/ .openSearch {
   margin: 0 24px;
-  background-color: rgba(255, 255, 255, 0.16);
+  background-color: white;
   border-radius: 2px;
   cursor: text; }
 #coreScaffold /deep/ .openSearch:hover {
-  background-color: rgba(255, 255, 255, 0.24); }
+  background-color: white; }
 #coreScaffold /deep/ .turnWhite {
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 2px; }
 #coreScaffold /deep/ #searchContainer {
   overflow: hidden; }

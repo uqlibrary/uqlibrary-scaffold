@@ -14,17 +14,17 @@
     visibility: visible !important;
   }
   .openSearch {
-    margin: 0 24px;
-    background-color: rgba(255,255,255,0.16);
-    border-radius: 2px;
+    margin: 0 ($base-unit*3);
+    background-color: $input-inverse;
+    border-radius: $border-radius;
     cursor: text;
   }
   .openSearch:hover {
-    background-color: rgba(255,255,255,0.24);
+    background-color: $input-inverse-hover;
   }
   .turnWhite {
-    background-color: #fff;
-    border-radius: 2px;
+    background-color: $white;
+    border-radius: $border-radius;
   }
   #searchContainer {
     overflow: hidden;
