@@ -26,10 +26,10 @@
   "license": "MIT",
   "homepage": "https://github.com/uqlibrary/uqlibrary-scaffold",
   "dependencies": {
-    "uqlibrary-atoms": "uqlibrary/uqlibrary-atoms",
     "uqlibrary-account-button": "uqlibrary/uqlibrary-account-button",
     "uqlibrary-apps-button": "uqlibrary/uqlibrary-apps-button",
     "uqlibrary-chat-button": "uqlibrary/uqlibrary-chat-button",
+    "uqlibrary-elements": "uqlibrary/uqlibrary-elements",
     "uqlibrary-menu": "uqlibrary/uqlibrary-menu",
     "uqlibrary-notifications-button": "uqlibrary/uqlibrary-notifications-button",
     "uqlibrary-search-input": "uqlibrary/uqlibrary-search-input",
