@@ -1,38 +1,40 @@
 @import "../uqlibrary-elements/resources/theme/variables";
 
-#coreScaffold /deep/ #drawerPanel {
-  #menuButton {
-    display: none;
+#coreScaffold /deep/ {
+  #mainToolbar {
+    width: 100%;
+    white-space: nowrap;
   }
-  core-toolbar {
-    background-color: $dark-primary;
+  .hidden {
+    opacity: 0;
+    visibility: hidden;
   }
-}
-#mainToolbar {
-  width: 100%;
-  white-space: nowrap;
-}
-.hidden {
-  opacity: 0;
-  visibility: hidden;
-}
-.visible {
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-.openSearch {
-  margin: 0 24px;
-  background-color: rgba(255,255,255,0.16);
-  border-radius: 2px;
-  cursor: text;
-}
-.openSearch:hover {
-  background-color: rgba(255,255,255,0.24);
-}
-.turnWhite {
-  background-color: #fff;
-  border-radius: 2px;
-}
-#searchContainer {
-  overflow: hidden;
+  .visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .openSearch {
+    margin: 0 24px;
+    background-color: rgba(255,255,255,0.16);
+    border-radius: 2px;
+    cursor: text;
+  }
+  .openSearch:hover {
+    background-color: rgba(255,255,255,0.24);
+  }
+  .turnWhite {
+    background-color: #fff;
+    border-radius: 2px;
+  }
+  #searchContainer {
+    overflow: hidden;
+  }
+  #drawerPanel {
+    #menuButton {
+      display: none;
+    }
+    core-toolbar {
+      background-color: $dark-primary;
+    }
+  }
 }

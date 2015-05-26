@@ -1,34 +1,27 @@
-#coreScaffold /deep/ #drawerPanel #menuButton {
-  display: none; }
-#coreScaffold /deep/ #drawerPanel core-toolbar {
-  background-color: #4a075f; }
-
-#mainToolbar {
+#coreScaffold /deep/ #mainToolbar {
   width: 100%;
   white-space: nowrap; }
-
-.hidden {
+#coreScaffold /deep/ .hidden {
   opacity: 0;
   visibility: hidden; }
-
-.visible {
+#coreScaffold /deep/ .visible {
   opacity: 1 !important;
   visibility: visible !important; }
-
-.openSearch {
+#coreScaffold /deep/ .openSearch {
   margin: 0 24px;
   background-color: rgba(255, 255, 255, 0.16);
   border-radius: 2px;
   cursor: text; }
-
-.openSearch:hover {
+#coreScaffold /deep/ .openSearch:hover {
   background-color: rgba(255, 255, 255, 0.24); }
-
-.turnWhite {
+#coreScaffold /deep/ .turnWhite {
   background-color: #fff;
   border-radius: 2px; }
-
-#searchContainer {
+#coreScaffold /deep/ #searchContainer {
   overflow: hidden; }
+#coreScaffold /deep/ #drawerPanel #menuButton {
+  display: none; }
+#coreScaffold /deep/ #drawerPanel core-toolbar {
+  background-color: #4a075f; }
 
 /*# sourceMappingURL=uqlibrary-scaffold.css.map */
