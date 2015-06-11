@@ -1,6 +1,6 @@
 {
   "name": "uqlibrary-scaffold",
-  "version": "0.5",
+  "version": "1.0",
   "description": "A starter boilerplate upon which any UQ app can be built using Web Components",
   "authors": [
     "The University of Queensland Library"
@@ -30,7 +30,8 @@
     "paper-elements": "PolymerElements/paper-elements#1.0.1",
     "platinum-elements": "PolymerElements/platinum-elements#1.0.1",
     "neon-elements": "PolymerElements/neon-elements#1.0.0",
-    "page": "visionmedia/page.js#~1.6.3"
+    "page": "visionmedia/page.js#~1.6.3",
+    "uqlibrary-search-input": "uqlibrary/uqlibrary-search-input#1.0"
   },
   "devDependencies": {
     "web-component-tester": "*",

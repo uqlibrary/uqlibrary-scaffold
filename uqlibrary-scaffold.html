@@ -24,9 +24,8 @@
 <link rel="import" href="../paper-input/paper-input-container.html">
 
 
-<!-- Platinum elements -->
-<link rel="import" href="../platinum-sw/platinum-sw-cache.html">
-<link rel="import" href="../platinum-sw/platinum-sw-register.html">
+<!--UQ Library elements-->
+<link rel="import" href="../uqlibrary-search-input/uqlibrary-search-input.html">
 
 <!--
 Reusable scaffold
@@ -87,7 +86,7 @@ Reusable scaffold
           <uqlibrary-search class="flex" is-narrow$="{{isNarrow}}"></uqlibrary-search>
 
           <!-- Toolbar icons -->
-          <!--<paper-icon-button style="margin-left: 24px" icon="communication:chat-bubble-outline" hidden$="{{isNarrow}}"></paper-icon-button>-->
+          <paper-icon-button style="margin-left: 24px" icon="communication:chat-bubble-outline" hidden$="{{isNarrow}}"></paper-icon-button>
           <paper-icon-button icon="apps" hidden$="{{isNarrow}}"></paper-icon-button>
           <paper-icon-button icon="social:notifications-none" hidden$="{{isNarrow}}"></paper-icon-button>
           <paper-icon-button icon="account-circle" hidden$="{{isNarrow}}"></paper-icon-button>
@@ -186,29 +185,30 @@ Reusable scaffold
       </paper-header-panel>
     </paper-drawer-panel>
 
-    <paper-toast id="caching-complete"
-                 duration="6000"
-                 text="Caching complete! This app will work offline.">
-    </paper-toast>
-
-    <platinum-sw-register auto-register
-                          clients-claim
-                          skip-waiting
-                          on-service-worker-installed="displayInstalledToast">
-      <platinum-sw-cache default-cache-strategy="networkFirst"
-                         precache-file="precache.json">
-      </platinum-sw-cache>
-    </platinum-sw-register>
 
   </template>
   <script>
-    Polymer('uqlibrary-scaffold', {
-      width: '256px',
-      drawerIsOpen: false,
-      searchIsActive: false,
-      enableSearchSuggestions: false,
 
-      ready: function () {
+    Polymer({
+      is: 'uqlibrary-scaffold',
+      properties: {
+        /**
+         * TODO: description of these properties
+         */
+        width: '256px',
+        drawerIsOpen: false,
+        searchIsActive: false,
+        enableSearchSuggestions: false
+      },
+      // Element Lifecycle
+      ready: function() {
+        // `ready` is called after all elements have been configured, but
+        // propagates bottom-up. This element's children are ready, but parents
+        // are not.
+        //
+        // This is the point where you should make modifications to the DOM (when
+        // necessary), or kick off any processes the element wants to perform.
+
         that = this;
         this.addEventListener('uqlibrary-menu-close', this.onCloseMenu);
         this.$.coreScaffold.closeDrawer();
@@ -234,21 +234,19 @@ Reusable scaffold
           document.querySelector('#coreScaffold /deep/ #drawerPanel core-toolbar').style.backgroundColor = "#4a075f";
         });
       },
-
-      onOpenMenu: function () {
-        if (! this.isNarrow) {
-          this.width = '256px';
-        }
-        this.$.coreScaffold.openDrawer();
-        this.drawerIsOpen = true;
+      attached: function() {
+        // `attached` fires once the element and its parents have been inserted
+        // into a document.
+        //
+        // This is a good place to perform any work related to your element's
+        // visual state or active behavior (measuring sizes, beginning animations,
+        // loading resources, etc).
       },
-
-      onCloseMenu: function () {
-        this.$.coreScaffold.closeDrawer();
-        if (! this.isNarrow) {
-          this.width = '9999px';
-        }
-        this.drawerIsOpen = false;
+      detached: function() {
+        // The analog to `attached`, `detached` fires when the element has been
+        // removed from a document.
+        //
+        // Use this to clean up anything you did in `attached`.
       }
     });
   </script>
