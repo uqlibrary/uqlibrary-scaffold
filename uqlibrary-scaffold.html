@@ -85,12 +85,12 @@ Reusable scaffold
           <div class="appName paper-font-headline">{{appTitle}}</div>
 
           <!--Toolbar search-->
-          <uqlibrary-search-input class="flex" is-narrow$="{{isNarrow}}"></uqlibrary-search-input>
+          <uqlibrary-search-input class="flex" is-narrow$="{{isNarrow}}" enable-search-suggestions={{enableSearchSuggestions}}></uqlibrary-search-input>
 
           <!-- Toolbar icons -->
-          <paper-icon-button style="margin-left: 24px" icon="communication:chat-bubble-outline" hidden$="{{isNarrow}}"></paper-icon-button>
-          <paper-icon-button icon="apps" hidden$="{{isNarrow}}"></paper-icon-button>
-          <paper-icon-button icon="social:notifications-none" hidden$="{{isNarrow}}"></paper-icon-button>
+          <paper-icon-button icon="communication:chat-bubble-outline" hidden$="{{isNarrow}}"></paper-icon-button>
+          <paper-icon-button icon="apps"></paper-icon-button>
+          <paper-icon-button icon="social:notifications-none"></paper-icon-button>
           <paper-icon-button icon="account-circle" hidden$="{{isNarrow}}"></paper-icon-button>
 
         </paper-toolbar>
@@ -145,7 +145,11 @@ Reusable scaffold
 //        width: '256px',
 //        drawerIsOpen: false,
 //        searchIsActive: false,
-        enableSearchSuggestions: Boolean,
+        enableSearchSuggestions: {
+          type: Boolean,
+          value: false
+
+        },
         appTitle: String,
         appMenuFile: Object
       },
