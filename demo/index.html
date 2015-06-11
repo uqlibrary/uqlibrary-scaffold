@@ -4,14 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no">
   <title>uqlibrary-scaffold demo</title>
+  <link rel="import" href="../../webcomponentsjs/webcomponents-lite.min.js">
   <link rel="import" href="../uqlibrary-scaffold.html">
 </head>
 <body fullbleed unresolved>
 
+<template is="dom-bind" id="app">
 <uqlibrary-scaffold app-title="My Library"
                     app-menu-file="flint.json"
-                    enable-search-suggestions
-  ></uqlibrary-scaffold>
+                    enable-search-suggestions></uqlibrary-scaffold>
+</template>
 
 
 <script>
