@@ -45,6 +45,11 @@ Reusable scaffold
 -->
 
 <dom-module id="uqlibrary-scaffold">
+  <style>
+    paper-toolbar paper-icon-button[icon=menu] {
+      margin-right: 12px;
+    }
+  </style>
   <template>
 
     <iron-media-query query="(max-width: 620px)" query-matches="{{isNarrow}}"></iron-media-query>
@@ -91,7 +96,6 @@ Reusable scaffold
       <paper-header-panel main>
         <!-- Main Toolbar -->
         <paper-toolbar id="mainToolbar">
-          <!-- <paper-icon-button icon="menu" icon="menu" id="paperToggle" tabindex="1" paper-drawer-toggle></paper-icon-button> -->
 
           <paper-icon-button icon="menu" tabindex="1" paper-drawer-toggle></paper-icon-button>
 
