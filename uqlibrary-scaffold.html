@@ -45,6 +45,12 @@ Reusable scaffold
 -->
 
 <dom-module id="uqlibrary-scaffold">
+  <style>
+    .active {
+      background: #fff;
+      color: #333;
+    }
+  </style>
   <template>
 
     <iron-media-query query="(max-width: 620px)" query-matches="{{isNarrow}}"></iron-media-query>
@@ -92,19 +98,20 @@ Reusable scaffold
         <!-- Main Toolbar -->
         <paper-toolbar id="mainToolbar">
 
-          <paper-icon-button icon="menu" tabindex="1" paper-drawer-toggle></paper-icon-button>
-
-          <!-- Application name -->
-          <div class="appName paper-font-headline">{{appTitle}}</div>
+            <paper-icon-button icon="menu" tabindex="1" paper-drawer-toggle hidden$="{{searchIsActive}}"></paper-icon-button>
+            <!-- Application name -->
+            <div class="appName paper-font-headline" hidden$="{{searchIsActive}}">{{appTitle}}</div>
 
           <!--Toolbar search-->
-          <uqlibrary-search-input class="flex" is-narrow$="{{isNarrow}}" enable-search-suggestions={{enableSearchSuggestions}}></uqlibrary-search-input>
+          <uqlibrary-search-input class="flex" id="search" is-narrow$="{{isNarrow}}" enable-search-suggestions={{enableSearchSuggestions}}></uqlibrary-search-input>
 
           <!-- Toolbar icons -->
-          <paper-icon-button icon="communication:chat-bubble-outline" hidden$="{{isNarrow}}"></paper-icon-button>
-          <paper-icon-button icon="apps"></paper-icon-button>
-          <paper-icon-button icon="social:notifications-none"></paper-icon-button>
-          <paper-icon-button icon="account-circle" hidden$="{{isNarrow}}"></paper-icon-button>
+          <div id="rightScaffold" hidden$="{{searchIsActive}}">
+            <paper-icon-button icon="communication:chat-bubble-outline" hidden$="{{isNarrow}}"></paper-icon-button>
+            <paper-icon-button icon="apps"></paper-icon-button>
+            <paper-icon-button icon="social:notifications-none"></paper-icon-button>
+            <paper-icon-button icon="account-circle" hidden$="{{isNarrow}}"></paper-icon-button>
+          </div>
         </paper-toolbar>
         <!-- Main Content -->
         <div class="content">
@@ -124,7 +131,11 @@ Reusable scaffold
          */
 //        width: '256px',
 //        drawerIsOpen: false,
-//        searchIsActive: false,
+        searchIsActive: {
+          type: Boolean,
+          value: false,
+          notify: true
+        },
         enableSearchSuggestions: {
           type: Boolean,
           value: false
@@ -135,6 +146,7 @@ Reusable scaffold
       },
       // Element Lifecycle
       ready: function() {
+        var that = this;
         // `ready` is called after all elements have been configured, but
         // propagates bottom-up. This element's children are ready, but parents
         // are not.
@@ -151,21 +163,20 @@ Reusable scaffold
 //        this.$.search.addEventListener('uqlibrary-search-input-button-clicked', function(e) {
 //          console.log('clicked search!');
 //        });
-//        this.$.search.addEventListener('uqlibrary-search-input-button-clicked-narrow', function(e) {
-//          console.log('clicked search while narrow!');
+        this.$.search.addEventListener('uqlibrary-search-input-button-clicked-narrow', function(e) {
+          console.log('clicked search while narrow!');
+//          this.searchIsActive = true;
+//          that.$.mainToolbar.toggleClass('active');
 //          that.$.scaffoldLeft.setAttribute('hidden', 'true');
 //          that.$.scaffoldRight.setAttribute('hidden', 'true');
 //          that.searchIsActive = true;
 //          document.querySelector('#coreScaffold /deep/ #drawerPanel core-toolbar').style.backgroundColor = "#fff";
-//        });
+        });
 //
-//        this.$.search.addEventListener('uqlibrary-search-input-back', function(e) {
-//          console.log('clicked back while narrow!');
-//          that.$.scaffoldLeft.removeAttribute('hidden');
-//          that.$.scaffoldRight.removeAttribute('hidden');
+        this.$.search.addEventListener('uqlibrary-search-input-back', function(e) {
+          console.log('clicked back while narrow!');
 //          that.searchIsActive = false;
-//          document.querySelector('#coreScaffold /deep/ #drawerPanel core-toolbar').style.backgroundColor = "#4a075f";
-//        });
+        });
       },
 
       menuSelected: function() {
