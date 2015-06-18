@@ -28,6 +28,7 @@
 
 <!--UQ Library elements-->
 <link rel="import" href="../uqlibrary-search-input/uqlibrary-search-input.html">
+<link rel="import" href="../uqlibrary-menu/uqlibrary-menu.html">
 
 <!--
 Reusable scaffold
@@ -57,42 +58,10 @@ Reusable scaffold
 
     <paper-drawer-panel id="scaffoldDrawerPanel" force-narrow>
       <div drawer>
-        <!-- Drawer Toolbar -->
-        <paper-toolbar id="drawerToolbar">
-          <div class="paper-font-headline">{{appTitle}}</div>
-        </paper-toolbar>
-        <!-- Drawer Content -->
-        <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="menuSelected">
-
-          <paper-item data-route="home">
-            <a href="/">
-              <iron-icon icon="home"></iron-icon>
-              <span>Home</span>
-            </a>
-          </paper-item>
-
-          <paper-item data-route="askus">
-            <a href="/askus">
-              <iron-icon icon="info"></iron-icon>
-              <span>Ask us</span>
-            </a>
-          </paper-item>
-
-          <paper-item data-route="booking">
-            <a href="/booking">
-              <iron-icon icon="help"></iron-icon>
-              <span>Booking</span>
-            </a>
-          </paper-item>
-
-          <paper-item data-route="borrowing">
-            <a href="/borrowing">
-              <iron-icon icon="help"></iron-icon>
-              <span>Borrowing</span>
-            </a>
-            </paper-item>
-
-        </paper-menu>
+        <uqlibrary-menu
+                account="{{account}}"
+                applications="{{applications}}">
+        </uqlibrary-menu>
       </div>
       <paper-header-panel main>
         <!-- Main Toolbar -->
@@ -178,27 +147,50 @@ Reusable scaffold
           that.searchIsActive = false;
           that.$.mainToolbar.toggleClass('active');
         });
-      },
+        this.account = {
+          "id": "s1234567",
+          "class": "0",
+          "type": 18,
+          "homeLib": "sshia",
+          "name": "Mr. John Doe",
+          "mail": "s1234567@student.uq.edu.au",
+          "groups": [],
+          "hasSession": true,
+          "canMasquerade": true
+        };
 
-      menuSelected: function() {
-        //close drawer panel when menu selection was made
-        this.$.scaffoldDrawerPanel.closeDrawer();
+        this.applications = [
+          {
+            "title": "My Library",
+            "description": "Return to My Library",
+            "icon": "dashboard",
+            "link": "/home"
+          },
+          {
+            "title": "Ask Us",
+            "description": "Return to UQ Library Home",
+            "icon": "home",
+            "link": "/askus"
+          },
+          {
+            "isDivider": true
+          },
+          {
+            "title": "Borrowing",
+            "description": "Ask the library for help",
+            "icon": "help",
+            "link": "/borrowing"
+          },
+          {
+            "title": "Bookings",
+            "description": "Ask the library for help",
+            "icon": "help",
+            "link": "/booking"
+          }];
       },
-
-      attached: function() {
-        // `attached` fires once the element and its parents have been inserted
-        // into a document.
-        //
-        // This is a good place to perform any work related to your element's
-        // visual state or active behavior (measuring sizes, beginning animations,
-        // loading resources, etc).
-      },
-      detached: function() {
-        // The analog to `attached`, `detached` fires when the element has been
-        // removed from a document.
-        //
-        // Use this to clean up anything you did in `attached`.
-      }
-    });
+        //temp vars
+        account: String,
+        applications: Array
+      });
   </script>
 </dom-module>
