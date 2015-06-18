@@ -165,8 +165,8 @@ Reusable scaffold
 //        });
         this.$.search.addEventListener('uqlibrary-search-input-button-clicked-narrow', function(e) {
           console.log('clicked search while narrow!');
-//          this.searchIsActive = true;
-//          that.$.mainToolbar.toggleClass('active');
+          that.searchIsActive = true;
+          that.$.mainToolbar.toggleClass('active');
 //          that.$.scaffoldLeft.setAttribute('hidden', 'true');
 //          that.$.scaffoldRight.setAttribute('hidden', 'true');
 //          that.searchIsActive = true;
@@ -175,7 +175,8 @@ Reusable scaffold
 //
         this.$.search.addEventListener('uqlibrary-search-input-back', function(e) {
           console.log('clicked back while narrow!');
-//          that.searchIsActive = false;
+          that.searchIsActive = false;
+          that.$.mainToolbar.toggleClass('active');
         });
       },
 
