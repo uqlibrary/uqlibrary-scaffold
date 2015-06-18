@@ -46,6 +46,12 @@ Reusable scaffold
 -->
 
 <dom-module id="uqlibrary-scaffold">
+  <style>
+    .active {
+      background: #fff;
+      color: #333;
+    }
+  </style>
   <template>
 
     <iron-media-query query="(max-width: 620px)" query-matches="{{isNarrow}}"></iron-media-query>
@@ -56,26 +62,25 @@ Reusable scaffold
                 account="{{account}}"
                 applications="{{applications}}">
         </uqlibrary-menu>
-
       </div>
       <paper-header-panel main>
         <!-- Main Toolbar -->
         <paper-toolbar id="mainToolbar">
-          <!-- <paper-icon-button icon="menu" icon="menu" id="paperToggle" tabindex="1" paper-drawer-toggle></paper-icon-button> -->
 
-          <paper-icon-button icon="menu" tabindex="1" paper-drawer-toggle></paper-icon-button>
-
-          <!-- Application name -->
-          <div class="appName paper-font-headline">{{appTitle}}</div>
+            <paper-icon-button icon="menu" tabindex="1" paper-drawer-toggle hidden$="{{searchIsActive}}"></paper-icon-button>
+            <!-- Application name -->
+            <div class="appName paper-font-headline" hidden$="{{searchIsActive}}">{{appTitle}}</div>
 
           <!--Toolbar search-->
-          <uqlibrary-search-input class="flex" is-narrow$="{{isNarrow}}" enable-search-suggestions={{enableSearchSuggestions}}></uqlibrary-search-input>
+          <uqlibrary-search-input class="flex" id="search" is-narrow$="{{isNarrow}}" enable-search-suggestions={{enableSearchSuggestions}}></uqlibrary-search-input>
 
           <!-- Toolbar icons -->
-          <paper-icon-button icon="communication:chat-bubble-outline" hidden$="{{isNarrow}}"></paper-icon-button>
-          <paper-icon-button icon="apps"></paper-icon-button>
-          <paper-icon-button icon="social:notifications-none"></paper-icon-button>
-          <paper-icon-button icon="account-circle" hidden$="{{isNarrow}}"></paper-icon-button>
+          <div id="rightScaffold" hidden$="{{searchIsActive}}">
+            <paper-icon-button icon="communication:chat-bubble-outline" hidden$="{{isNarrow}}"></paper-icon-button>
+            <paper-icon-button icon="apps"></paper-icon-button>
+            <paper-icon-button icon="social:notifications-none"></paper-icon-button>
+            <paper-icon-button icon="account-circle" hidden$="{{isNarrow}}"></paper-icon-button>
+          </div>
         </paper-toolbar>
         <!-- Main Content -->
         <div class="content">
@@ -95,14 +100,17 @@ Reusable scaffold
          */
 //        width: '256px',
 //        drawerIsOpen: false,
-//        searchIsActive: false,
+        searchIsActive: {
+          type: Boolean,
+          value: false,
+          notify: true
+        },
         enableSearchSuggestions: {
           type: Boolean,
           value: false
 
         },
         appTitle: String,
-        appMenuFile: Object,
 
         //temp vars
         account: String,
