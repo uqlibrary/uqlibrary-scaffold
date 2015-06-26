@@ -59,17 +59,21 @@ Reusable scaffold
     <paper-drawer-panel id="scaffoldDrawerPanel" force-narrow>
       <div drawer>
         <uqlibrary-menu
-                account="{{account}}"
-                applications="{{applications}}">
+                user="{{user}}"
+                menu-file="{{appMenuFile}}"
+                on-selected-menu-item-changed="closeMenuDrawer"
+                on-menu-items-changed="menuReloaded"
+                on-logout-clicked="logout">
+
         </uqlibrary-menu>
       </div>
       <paper-header-panel main>
         <!-- Main Toolbar -->
         <paper-toolbar id="mainToolbar">
 
-            <paper-icon-button icon="menu" tabindex="1" paper-drawer-toggle hidden$="{{searchIsActive}}"></paper-icon-button>
-            <!-- Application name -->
-            <div class="appName paper-font-headline" hidden$="{{searchIsActive}}">{{appTitle}}</div>
+          <paper-icon-button icon="menu" tabindex="1" paper-drawer-toggle hidden$="{{searchIsActive}}"></paper-icon-button>
+          <!-- Application name -->
+          <div class="appName paper-font-headline" hidden$="{{searchIsActive}}">{{appTitle}}</div>
 
           <!--Toolbar search-->
           <uqlibrary-search-input class="flex" id="search" is-narrow$="{{isNarrow}}" enable-search-suggestions={{enableSearchSuggestions}}></uqlibrary-search-input>
@@ -107,9 +111,22 @@ Reusable scaffold
           type: Boolean,
           value: false
         },
+        user: Object,
         appTitle: String,
         appMenuFile: Object
       },
+
+      attached: function() {
+        this.user = {
+          hasSession: false
+        };
+      },
+
+      menuReloaded: function(e) {
+        console.log('menuReloaded');
+        console.log(e.detail);
+      },
+
       ready: function() {
         var that = this;
         this.$.search.addEventListener('uqlibrary-search-input-button-clicked-narrow', function(e) {
@@ -122,50 +139,20 @@ Reusable scaffold
           that.searchIsActive = false;
           that.$.mainToolbar.toggleClass('active');
         });
-        this.account = {
-          "id": "s1234567",
-          "class": "0",
-          "type": 18,
-          "homeLib": "sshia",
-          "name": "Mr. John Doe",
-          "mail": "s1234567@student.uq.edu.au",
-          "groups": [],
-          "hasSession": true,
-          "canMasquerade": true
-        };
 
-        this.applications = [
-          {
-            "title": "My Library",
-            "description": "Return to My Library",
-            "icon": "dashboard",
-            "link": "/home"
-          },
-          {
-            "title": "Ask Us",
-            "description": "Return to UQ Library Home",
-            "icon": "home",
-            "link": "/askus"
-          },
-          {
-            "isDivider": true
-          },
-          {
-            "title": "Borrowing",
-            "description": "Ask the library for help",
-            "icon": "help",
-            "link": "/borrowing"
-          },
-          {
-            "title": "Bookings",
-            "description": "Ask the library for help",
-            "icon": "help",
-            "link": "/booking"
-          }];
       },
-        //temp vars
-        account: String,
-        applications: Array
+
+      closeMenuDrawer: function() {
+        this.$.scaffoldDrawerPanel.closeDrawer();
+      },
+
+      logout: function() {
+        this.$.scaffoldDrawerPanel.closeDrawer();
+        //TODO: modal dialogs are not displayed properly in scaffold, dialog size is not calculate correctly inside drawer
+        //TODO: show dialog from body
+        console.log('perform logout/show dialog');
+      }
+
       });
   </script>
 </dom-module>
