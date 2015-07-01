@@ -47,9 +47,19 @@ Reusable scaffold
 
 <dom-module id="uqlibrary-scaffold">
   <style>
+    /* make navigation drawer scrollable */
+    #navigationDrawer {
+    @apply(- -layout-flex);
+    @apply(- -layout);
+    @apply(- -layout-vertical);
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
     .active {
-      background: #fff;
-      color: #333;
+      background: var(--active-input-bg-color);
+      color: var(--active-input-text-color);
     }
   </style>
   <template>
@@ -57,7 +67,7 @@ Reusable scaffold
     <iron-media-query query="(max-width: 620px)" query-matches="{{isNarrow}}"></iron-media-query>
 
     <paper-drawer-panel id="scaffoldDrawerPanel" force-narrow>
-      <div drawer>
+      <div id="navigationDrawer" drawer>
         <uqlibrary-menu
                 user="{{user}}"
                 menu-file="{{appMenuFile}}"
